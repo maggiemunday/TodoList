@@ -27,12 +27,17 @@ class ItemListViewModel: ObservableObject {
     func addItem(description: String) {
         let newItem = Item(description: description, isDone: false)
         items.append(newItem)
+        sortItems()
     }
     
     func updateItem(item: Item) {
         if let index = items.firstIndex(where: { $0.id == item.id }) {
             items[index] = item.updateCompletion()
         }
+    }
+    
+    func sortItems() {
+        items.sort { $1.isDone && !$0.isDone }
     }
     
 }

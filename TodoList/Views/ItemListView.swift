@@ -22,6 +22,7 @@ struct ItemListView: View {
                     .onTapGesture {
                         withAnimation(.linear) {
                             itemListViewModel.updateItem(item: item)
+                            itemListViewModel.sortItems()
                         }
                     }
             }
