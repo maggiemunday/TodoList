@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Item: Identifiable {
+struct Item: Identifiable, Codable {
     let id: String
     let description: String
     let isDone: Bool

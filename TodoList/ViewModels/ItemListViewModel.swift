@@ -9,11 +9,25 @@ import Foundation
 
 class ItemListViewModel: ObservableObject {
     
-    @Published var items: [Item] = []
-    @Published var completeItems: [Item] = []
+    @Published var items: [Item] = [] {
+        didSet {
+            saveItems()
+        }
+    }
+    
+    let itemsKey: String = "ITEMS_KEY"
     
     init() {
+        getItems()
+    }
+    
+    func getItems() {
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([Item].self, from: data)
+        else { return }
         
+        self.items = savedItems
     }
     
     func deleteItem(indexSet: IndexSet) {
@@ -38,6 +52,12 @@ class ItemListViewModel: ObservableObject {
     
     func sortItems() {
         items.sort { $1.isDone && !$0.isDone }
+    }
+    
+    func saveItems() {
+        if let encodedData = try? JSONEncoder().encode(items) {
+            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+        }
     }
     
 }
