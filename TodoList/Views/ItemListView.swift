@@ -13,6 +13,10 @@ struct ItemListView: View {
     
     var body: some View {
         List {
+            if(itemListViewModel.items.isEmpty) {
+                Text("Click the '+' to add a todo!")
+                    .foregroundColor(Color.gray)
+            }
             ForEach(itemListViewModel.items) { item in
                 ItemListRowView(item: item)
                     .onTapGesture {
@@ -24,10 +28,11 @@ struct ItemListView: View {
             .onDelete(perform: itemListViewModel.deleteItem)
             .onMove(perform: itemListViewModel.moveItem)
         }
-        .navigationTitle("My ToDos ✏️")
+        .navigationTitle("My ToDos")
         .navigationBarItems(
             leading: EditButton(),
             trailing:NavigationLink("+", destination: AddView())
+                .font(.title2)
         )
     }
 }

@@ -22,16 +22,17 @@ struct ItemListRowView: View {
     }
 }
 
-struct ItemListRowView_Previews: PreviewProvider {
+/*struct ItemListRowView_Previews: PreviewProvider {
     
-    static var exampleItem1 = Item(description: "item 1", isDone: false)
-    static var exampleItem2 = Item(description: "item 2", isDone: true)
+    //static var exampleItem1 = Item(description: "item 1", isDone: false)
+    //static var exampleItem2 = Item(description: "item 2", isDone: true)
     
     static var previews: some View {
-        Group {
+        ItemListRowView()
+        /*Group {
             ItemListRowView(item: exampleItem1)
             ItemListRowView(item: exampleItem2)
-        }
-        .previewLayout(.sizeThatFits)
+        }*/
+        //.previewLayout(.sizeThatFits)
     }
-}
+}*/

@@ -10,19 +10,10 @@ import Foundation
 class ItemListViewModel: ObservableObject {
     
     @Published var items: [Item] = []
+    @Published var completeItems: [Item] = []
     
     init() {
-        getItems()
         
-    }
-    
-    func getItems() {
-        let newItems = [
-            Item(description: "item 1", isDone: false),
-            Item(description: "item 2", isDone: true),
-            Item(description: "item 3", isDone: false),
-        ]
-        items.append(contentsOf: newItems)
     }
     
     func deleteItem(indexSet: IndexSet) {
